@@ -1,12 +1,14 @@
 require_relative 'soda'
 
 class SodaMachine
-  attr_reader :sodas, :cash
+  attr_reader :sodas, :cash, :brand
   @@total_sodas = 0
 
   def initialize(args = {})
     @sodas = args[:sodas]
     @cash = args[:cash]
+    @brand = args[brand.@brand]
+    @price = args[price.@price]
   end
 
   def current_inventory_count
@@ -15,15 +17,12 @@ class SodaMachine
 
   def find_soda(soda_brand)
     if @sodas.include?(soda_brand)
-      return @sodas.find do |brand|
-        if brand == soda_brand
-          return @brand
-        end
-      end
+      @brand
     else
       return nil
     end
   end
+
 
   def sell(soda_brand)
     if @sodas.include?(soda_brand) == false
@@ -31,6 +30,7 @@ class SodaMachine
     else
       @sodas.each do |soda_brand|
         @cash += @price
+        @@total_sodas -= 1
       end
     end
   end
@@ -38,7 +38,7 @@ class SodaMachine
 end
 
 
-p pepsi = Soda.new(brand: 'Pepsi', price: 0.65)
-p mountain_dew = Soda.new(brand: 'Mountain Dew', price: 0.75)
-p soda_machine = SodaMachine.new(sodas: [pepsi, mountain_dew], cash: 1.00)
+# p pepsi = Soda.new(brand: 'Pepsi', price: 0.65)
+# p mountain_dew = Soda.new(brand: 'Mountain Dew', price: 0.75)
+# p soda_machine = SodaMachine.new(sodas: [pepsi, mountain_dew], cash: 1.00)
 
